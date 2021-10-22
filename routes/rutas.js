@@ -1,21 +1,16 @@
-const { Router }= require('express')
+const { Router } = require('express')
+const rutas = Router();
 
-const rutas=Router()
+const { registrarJugador } = require('../controllers/controlador.js')
+const { buscarJugador } = require('../controllers/controlador.js')
+const { buscarJugadores } = require('../controllers/controlador.js')
+const { editarJugador } = require('../controllers/controlador.js')
+const { eliminarJugador } = require('../controllers/controlador.js')
 
-rutas.get('/avanzada/v1/jugadores', function (req, res) {
-    res.send('Hello World')
-})
+rutas.get('/jugadores', buscarJugadores)
+rutas.get('/jugadores/:id', buscarJugador)
+rutas.post('/jugadores', registrarJugador)
+rutas.put('/jugadores/:id', editarJugador)
+rutas.delete('/jugadores/:id', eliminarJugador)
 
-rutas.post('/avanzada/v1/jugadores', function (req, res) {
-    res.send('Hello World')
-})
-
-rutas.put('/avanzada/v1/jugadores', function (req, res) {
-    res.send('Hello World')
-})
-
-rutas.delete('/avanzada/v1/jugadores', function (req, res) {
-    res.send('Hello World')
-})
-
-module.exports=rutas
+module.exports = rutas
